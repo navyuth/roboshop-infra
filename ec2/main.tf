@@ -15,6 +15,7 @@ resource "aws_instance" "ec2" {
 
 resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
+
     connection {
       host = aws_instance.ec2.public_ip
       user = "centos"
@@ -56,7 +57,7 @@ resource "aws_security_group" "sg" {
 
 resource "aws_route53_record" "record" {
   zone_id = "Z069905439T4JHL9YIZCX"
-  name    = "${var.component}-dev.devopscourse.online.com"
+  name    = "${var.component}-dev.devopscourse.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.ec2.private_ip]
