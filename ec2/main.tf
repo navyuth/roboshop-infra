@@ -26,9 +26,10 @@ resource "null_resource" "provisioner" {
       "git clone https://github.com/navyuth/roboshop-shell",
       "cd roboshop-shell",
       "sudo bash ${var.component}.sh ${var.password}"
-
     ]
+
   }
+
 }
 
 resource "aws_security_group" "sg" {
