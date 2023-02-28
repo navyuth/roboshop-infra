@@ -45,10 +45,10 @@ variable "instances" {
       type = "t3.micro"
       password = "roboshop123"
     }
-    dispatch = {
-      name = "dispatch"
-      type = "t3.micro"
-      password = ""
-    }
+#    dispatch = {
+#      name = "dispatch"
+#      type = "t3.micro"
+#      password = ""
+#    }
   }
 }
