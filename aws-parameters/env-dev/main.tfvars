@@ -1,5 +1,9 @@
 parameters = [
-  {name: "test1", value = "Hello Universe", type: "String" },
-  { name: "dev.frontend.CATALOGUE_URL", value = "https://catalogue-dev.devopscourse.online:8080/", type : "String"
-  }
+
+  { name: "dev.frontend.catalogue_url", value = "localhost:8080/", type : "String"},
+  { name: "dev.frontend.user_url", value = "localhost:8080/", type : "String"},
+  { name: "dev.frontend.cart_url", value = "localhost:8080/", type : "String"},
+  { name: "dev.frontend.shipping-url", value = "localhost:8080/", type : "String"},
+  { name: "dev.frontend.payment_url", value = "localhost:8080/", type : "String"},
+
 ]
