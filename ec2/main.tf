@@ -59,8 +59,7 @@ resource "aws_iam_policy" "ssm-policy" {
   path        = "/"
   description = "${var.env}-${var.component}-ssm"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
+
   policy = jsonencode(
     {
       "Version": "2012-10-17",
@@ -90,24 +89,19 @@ resource "aws_iam_policy" "ssm-policy" {
 resource "aws_iam_role" "role" {
   name = "${var.env}-${var.component}-role"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
+
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "ec2.amazonaws.com"
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "ec2.amazonaws.com"
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
-
-  tags = {
-    tag-key = "tag-value"
-  }
 }
 
 resource "aws_iam_instance_profile" "profile" {
