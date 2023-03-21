@@ -4,7 +4,6 @@ module "vpc" {
 
   for_each = var.vpc
   vpc_cidr = each.value["vpc_cidr"]
-  Tags = {
-    Name = "${var.env}-vpc"
+#  tags = {
+#    Name = "${var.env}-vpc"
   }
-}
