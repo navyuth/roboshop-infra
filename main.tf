@@ -1,7 +1,7 @@
 module "vpc" {
-
   source = "git::https://github.com/navyuth/tf-module-vpc.git"
+  env = var.env
 
   for_each = var.vpc
-  cidr = each.value["cidr"]
+  vpc_cidr = each.value["vpc_cidr"]
 }
