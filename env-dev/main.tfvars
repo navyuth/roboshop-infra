@@ -74,6 +74,16 @@ rds = {
     preferred_backup_window = "07:00-09:00"
     no_of_instances = 1
     instance_class = "db.t3.small"
+  }
+}
+
+elasticache = {
+  main = {
+    engine = "redis"
+    engine_version = "6.x"
+    num_cache_nodes = 1
+    node_type = "cache.t3.micro"
+
 
   }
 }
