@@ -7,3 +7,6 @@ tags = {
   cost_center = 1002
   location = "Hyderabad"
 }
+
+default_vpc_id = "vpc-01eae2c387d216da2"
+default_route_table = "rtb-088728f5d571acca7"
