@@ -32,5 +32,5 @@ module "docdb" {
 }
 
 output "vpc" {
-  value = module.vpc
+  value = local.db_subnet_ids
 }
