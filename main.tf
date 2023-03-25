@@ -57,5 +57,14 @@ module "elasticache" {
   engine_version = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
   node_type = each.value["node_type"]
+}
 
+module "rabbitmq" {
+  source = "git::https://github.com/raghudevopsb71/tf-module-rabbitmq.git"
+  env    = var.env
+  tags   = var.tags
+  subnet_ids = local.db_subnet_ids
+
+  for_each      = var.rabbitmq
+  instance_type = each.value["instance_type"]
 }
