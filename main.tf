@@ -60,7 +60,7 @@ module "elasticache" {
 }
 
 module "rabbitmq" {
-  source = "git::https://github.com/raghudevopsb71/tf-module-rabbitmq.git"
+  source = "git::https://github.com/navyuth/tf-module-rabbitmq.git"
   env    = var.env
   tags   = var.tags
   subnet_ids = local.db_subnet_ids
