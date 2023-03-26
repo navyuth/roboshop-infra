@@ -10,3 +10,4 @@ variable "elasticache" {}
 variable "rabbitmq" {}
 variable "alb" {}
 variable "apps" {}
+variable "skip_final_snapshot" {}
