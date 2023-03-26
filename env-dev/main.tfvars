@@ -1,4 +1,5 @@
 env = "dev"
+bastion_cidr = [ "172.31.0.208/32" ]
 
 vpc = {
   main = {
@@ -95,7 +96,7 @@ rabbitmq = {
 
 alb = {
   public = {
-    subnet_name = "web"
+    subnet_name = "public"
     name = "public"
     internal = false
     load_balancer_type = "application"

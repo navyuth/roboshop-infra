@@ -82,10 +82,12 @@ module "alb" {
   subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
 }
 
-module "apps" {
+module "app" {
   source = "git::https://github.com/navyuth/tf-module-app.git"
   env    = var.env
   tags   = var.tags
+  vpc_id = module.vpc["main"].vpc_id
+  bastion_cidr = var.bastion_cidr
 
   for_each = var.apps
   component = each.value["component"]
