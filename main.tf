@@ -91,6 +91,7 @@ module "app" {
   tags   = var.tags
   vpc_id = module.vpc["main"].vpc_id
   bastion_cidr = var.bastion_cidr
+  dns_domain = var.dns_domain
 
   for_each = var.apps
   component = each.value["component"]
@@ -101,5 +102,9 @@ module "app" {
   subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
   port = each.value["port"]
   allow_app_to = lookup(local.subnet_cidr, each.value["allow_app_to"], null )
+  alb_dns_name = lookup(lookup(module.alb, each.value["alb"], null ), "dns_name", null)
+}
 
+output "alb" {
+  value = "module.alb"
 }
