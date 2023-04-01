@@ -89,9 +89,10 @@ module "app" {
   source = "git::https://github.com/navyuth/tf-module-app.git"
   env    = var.env
   tags   = var.tags
-  vpc_id = module.vpc["main"].vpc_id
   bastion_cidr = var.bastion_cidr
   dns_domain = var.dns_domain
+
+  vpc_id = module.vpc["main"].vpc_id
 
   for_each = var.apps
   component = each.value["component"]
@@ -99,10 +100,14 @@ module "app" {
   desired_capacity   = each.value["desired_capacity"]
   max_size           = each.value["max_size"]
   min_size           = each.value["min_size"]
-  subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
+
   port = each.value["port"]
+  listener_priority = each.value["listener_priority"]
+  subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
   allow_app_to = lookup(local.subnet_cidr, each.value["allow_app_to"], null )
   alb_dns_name = lookup(lookup(lookup(module.alb, each.value["alb"], null), "alb", null), "dns_name", null)
+  listener_arn      = lookup(lookup(lookup(module.alb, each.value["alb"], null), "listener", null), "arn", null)
+
 }
 
 output "alb" {
