@@ -19,7 +19,7 @@ parameters = [
   { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devopscourse.online:27017/users", type = "String" },
   { name = "dev.cart.redis_host", value = "redis-dev.devopscourse.online", type = "String" },
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devopscourse.online", type = "String" },
-  { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
+  { name = "dev.cart.catalogue_port", value = "80", type = "String" }
 
 ]
 
