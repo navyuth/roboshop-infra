@@ -17,7 +17,7 @@ module "docdb" {
   tags   = var.tags
 
   subnet_ids = local.db_subnet_ids
-  vpc_id = module.vpc["main"].vpc_id
+  #vpc_id = module.vpc["main"].vpc_id
 
 
   for_each = var.docdb
@@ -29,7 +29,7 @@ module "docdb" {
   skip_final_snapshot = each.value["skip_final_snapshot"]
   no_of_instances = each.value["no_of_instances"]
   instance_class = each.value["instance_class"]
-  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
+  #allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
 }
 
 module "rds" {
@@ -38,7 +38,7 @@ module "rds" {
   tags   = var.tags
 
   subnet_ids = local.db_subnet_ids
-  vpc_id = module.vpc["main"].vpc_id
+  #vpc_id = module.vpc["main"].vpc_id
 
   for_each       = var.rds
   engine         = each.value["engine"]
@@ -48,7 +48,7 @@ module "rds" {
   preferred_backup_window = each.value["preferred_backup_window"]
   no_of_instances = each.value["no_of_instances"]
   instance_class = each.value["instance_class"]
-  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
+  #allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
 }
 
 module "elasticache" {
@@ -56,14 +56,14 @@ module "elasticache" {
   env    = var.env
   tags   = var.tags
   subnet_ids = local.db_subnet_ids
-  vpc_id = module.vpc["main"].vpc_id
+  #vpc_id = module.vpc["main"].vpc_id
 
   for_each       = var.elasticache
   engine         = each.value["engine"]
   engine_version = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
   node_type = each.value["node_type"]
-  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
+  #allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
 }
 
 module "rabbitmq" {
@@ -71,11 +71,11 @@ module "rabbitmq" {
   env    = var.env
   tags   = var.tags
   subnet_ids = local.db_subnet_ids
-  vpc_id = module.vpc["main"].vpc_id
+  #vpc_id = module.vpc["main"].vpc_id
 
   for_each      = var.rabbitmq
   instance_type = each.value["instance_type"]
-  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
+  #allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
 }
 
 module "alb" {
