@@ -65,6 +65,7 @@ docdb = {
     skip_final_snapshot = true
     no_of_instances = 1
     instance_class = "db.t3.medium"
+    allow_subnets = "app"
   }
 }
 
@@ -77,6 +78,7 @@ rds = {
 
     no_of_instances = 1
     instance_class = "db.t3.small"
+    allow_subnets = "app"
   }
 }
 
@@ -86,12 +88,14 @@ elasticache = {
     engine_version = "6.x"
     num_cache_nodes = 1
     node_type = "cache.t3.micro"
+    allow_subnets = "app"
   }
 }
 
 rabbitmq = {
   main = {
     instance_type = "t3.micro"
+    allow_subnets = "app"
   }
 }
 
@@ -124,6 +128,7 @@ apps = {
     allow_app_to = "app"
     alb = "private"
     listener_priority = 10
+    parameters = ["docdb"]
   }
   cart = {
     component = "cart"
@@ -136,6 +141,7 @@ apps = {
     allow_app_to = "app"
     alb = "private"
     listener_priority = 11
+    parameters = ["elasticache"]
   }
   shipping = {
     component        = "shipping"
@@ -148,6 +154,7 @@ apps = {
     allow_app_to = "app"
     alb = "private"
     listener_priority = 12
+    parameters = ["rds"]
   }
   user = {
     component        = "user"
@@ -160,6 +167,7 @@ apps = {
     allow_app_to = "app"
     alb = "private"
     listener_priority = 13
+    parameters = ["docdb", "elasticache"]
   }
   payment = {
     component        = "payment"
@@ -172,6 +180,7 @@ apps = {
     allow_app_to = "app"
     alb = "private"
     listener_priority = 14
+    parameters = ["rabbitmq"]
   }
   frontend = {
     component        = "frontend"
@@ -184,5 +193,6 @@ apps = {
     allow_app_to = "public"
     alb = "public"
     listener_priority = 10
+    parameters = []
   }
 }
