@@ -56,14 +56,14 @@ module "elasticache" {
   env    = var.env
   tags   = var.tags
   subnet_ids = local.db_subnet_ids
-  #vpc_id = module.vpc["main"].vpc_id
+  vpc_id = module.vpc["main"].vpc_id
 
   for_each       = var.elasticache
   engine         = each.value["engine"]
   engine_version = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
   node_type = each.value["node_type"]
-  #allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
+  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null )
 }
 
 module "rabbitmq" {
@@ -113,6 +113,7 @@ module "app" {
 
   port = each.value["port"]
   listener_priority = each.value["listener_priority"]
+  parameters = each.value["parameters"]
   subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
   allow_app_to = lookup(local.subnet_cidr, each.value["allow_app_to"], null )
   alb_dns_name = lookup(lookup(lookup(module.alb, each.value["alb"], null), "alb", null), "dns_name", null)
